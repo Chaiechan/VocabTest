@@ -17,6 +17,7 @@ Hazır yapay zeka araçları iyice gelişmişken dedim ki arayıp da bulamadığ
 6.) Son olarak sol üstte bulunan tuş aracılığıyla gece-gündüz modları arasında geçiş yapabilirsiniz.
 
 
+
 -ENG-
 
 -This application is designed for Turkish users-
