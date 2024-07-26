@@ -268,6 +268,108 @@
         .file-input {
             display: none;
         }
+		.navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .nav-button {
+            background-color: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        .nav-button:hover {
+            background-color: #3182ce;
+            transform: translateY(-2px);
+        }
+        .nav-button:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .check-button {
+            background-color: #48bb78;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+			margin-right: -30px;
+			margin-bottom: 20px;
+        }
+        .check-button:hover {
+            background-color: #38a169;
+            transform: translateY(-2px);
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+		.final-score {
+            text-align: center;
+            background-color: #2d3748;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .final-score h2 {
+            color: #48bb78;
+            margin-bottom: 20px;
+        }
+
+        .score-details {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .score-item {
+            text-align: center;
+        }
+
+        .score-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .score-label {
+            font-size: 14px;
+            color: #a0aec0;
+        }
+
+        body.light .final-score {
+            background-color: #FCF7EE;
+        }
+		
+		.alert-blank {
+            background-color: white;
+            color: #2d3748;
+            border: 1px solid #a0aec0;
+        }
+		
+		#finishTest {
+            margin-top: 15px;
+			margin-left: 310px;
+        }
+		
+		#showClue {
+            margin-top: -20px;
+			margin-bottom: -7px;
+        }
     </style>
 </head>
 <body>
@@ -288,8 +390,8 @@
             </div>
         </div>
         <div class="card">
-            <h2>Vocabulary Test</h2>
-            <div id="testContent"></div>
+            <h2 id="testTitle">Vocabulary Test</h2>
+            <div id="testContent"></div>	
         </div>
     </div>
     <script>
@@ -297,213 +399,302 @@
             { 
                 word: ['Hump'], 
                 sentence: "The old lady can't walk well due to a hump on her back. / Camels depend on their humps to survive.", 
-                turkish: ['Kambur', 'Hörgüç']
+                turkish: ['Kambur', 'Hörgüç'],
+				turkish_sentence: "Yaşlı kadın sırtındaki kambur nedeniyle iyi yürüyemiyor. / Develer hayatta kalmak için hörgüçlerine ihtiyaç duyarlar."
             },
             { 
                 word: ['Wig', 'Hairpiece'],
                 sentence: "When did you start wearing a wig?", 
-                turkish: ['Peruk', 'Takma saç']
+                turkish: ['Peruk', 'Takma saç'],
+				turkish_sentence: "Ne zaman peruk takmaya başladın?"
             },
             { 
                 word: ['Chalk'], 
                 sentence: "Claire wanted her parents to buy a box of coloured chalks for her.", 
-                turkish: ['Tebeşir' , 'Kireçtaşı']
+                turkish: ['Tebeşir', 'Kireçtaşı'],
+				turkish_sentence: "Claire, ailesinden kendisine bir kutu renkli tebeşir almalarını istedi."
             },
             { 
                 word: ['Grab a bite'], 
                 sentence: "If you want to grab a bite while you're out, check out what restaurants are open on Christmas Day.", 
-                turkish: ['Hızlıca bir şeyler yemek', 'Atıştırmak']
+                turkish: ['Hızlıca bir şeyler yemek', 'Atıştırmak'],
+				turkish_sentence: "Dışarıdayken bir şeyler atıştırmak istiyorsanız Noel Günü hangi restoranların açık olduğuna göz atın."
             },
             { 
                 word: ['Spill the beans'], 
                 sentence: "Don't spill the beans.", 
-                turkish: ['Sırrı ağzından kaçırmak']
+                turkish: ['Sırrı ağzından kaçırmak'],
+				turkish_sentence: "Sakın sırrı ağzından kaçırma!"
             },
             { 
                 word: ['Cut corners'], 
-                sentence: "I had limited time to write my essay, so I cut corners here and there. / He is a person who never cuts corners.", 
-                turkish: ['Kolaya kaçmak', 'Kestirmeden gitmek']
+                sentence: "He never cuts corners. / I had limited time to write my essay, so I cut corners here and there.", 
+                turkish: ['Kolaya kaçmak', 'Kestirmeden gitmek'],
+				turkish_sentence: "O, asla işin kolayına kaçmaz. / Denememi yazmak için sınırlı zamanım vardı, bu yüzden zaman zaman kestirmeden gittim."
             },
             { 
                 word: ['Costs an arm and a leg'], 
                 sentence: "That new smartphone costs an arm and a leg.", 
-                turkish: ['Bir servete mal olmak']
+                turkish: ['Bir servete mal olmak'],
+				turkish_sentence: "Şu yeni akıllı telefon bir servete mal olur."
             },
             { 
-                word: ['To beat the bulge'], 
-                sentence: "Thailand's police force is in a battle to beat the bulge.", 
-                turkish: ['Kilo vermek']
+                word: ['Precise'], 
+                sentence: "All well and good, but these environmental indicators are not all that precise.", 
+                turkish: ['Kesin', 'Doğru', 'Dakik'],
+				turkish_sentence: "Her şey iyi güzel de bu çevresel göstergeler o kadar da kesin değil."
             },
             { 
                 word: ['Rigorous'], 
-                sentence: "It might not be the most rigorous training. / Our company has taken rigorous safety measures against occupational accidents.", 
-                turkish: ['Sıkı', 'Titiz']
+                sentence: "It might not be the most rigorous training. / Our company has taken rigorous safety measures against occupational accidents. / She went into the topic in rigorous detail.",
+                turkish: ['Sıkı', 'Titiz'],
+				turkish_sentence: "Bu çok sıkı bir eğitim olmayabilir. / Şirketimiz iş kazalarına karşı sıkı güvenlik önlemleri almıştır. / Konuyu titiz bir şekilde detaylandırdı."
             },
             { 
                 word: ['Occupational Accidents'], 
                 sentence: "Insurance of occupational accidents and professional diseases.", 
-                turkish: ['İş Kazaları']
+                turkish: ['İş Kazaları'],
+				turkish_sentence: "İş kazaları ve meslek hastalıkları sigortası."
             },
             { 
                 word: ['Incentive'], 
                 sentence: "Bonuses give salespeople a strong incentive to sell.", 
-                turkish: ['Teşvik']
+                turkish: ['Teşvik'],
+				turkish_sentence: "Bonuslar, satış elemanlarına satış yapmaları konusunda güçlü bir teşvik sağlar."
             },
             { 
                 word: ['Up for grabs'], 
-                sentence: "A prize worth $160 is up for grabs.", 
-                turkish: ['Herkese açık']
+                sentence: "There is a $160 prize up for grabs.", 
+                turkish: ['Herkese açık'],
+				turkish_sentence: "Herkese açık olan 160 dolarlık bir ödül mevcuttur."
             },
             { 
                 word: ['Contraption'], 
                 sentence: "This contraption is complicated to use. / This contraption may not look very impressive but ...", 
-                turkish: ['Mekanizma', 'Düzenek']
+                turkish: ['Mekanizma', 'Düzenek'],
+				turkish_sentence: "Bu mekanizmanın kullanımı karmaşıktır. / Bu düzenek çok etkileyici görünmüyor  olabilir ancak..."
             },
             { 
                 word: ['Defy'], 
                 sentence: "How dare you defy your teachers? / He has repeatedly defied the UN, and he has never in actual fact complied with UN demands.", 
-                turkish: ['Karşı koymak', 'Meydan okumak']
+                turkish: ['Karşı koymak', 'Meydan okumak'],
+				turkish_sentence: "Ne cüretle öğretmenlerine karşı gelirsin? / BM'ye defalarca meydan okudu ve gerçekte BM'nin taleplerine hiçbir zaman uymadı."
             },
             { 
                 word: ['Altitude'], 
                 sentence: "Regions can only be classified as mountainous on the basis of their altitude. / The plane maintained an altitude of 25,000 feet.", 
-                turkish: ['Rakım', 'İrtifa']
+                turkish: ['Rakım', 'İrtifa'],
+				turkish_sentence: "Bölgeler sadece rakımlarına göre dağlık olarak sınıflandırılabilir. / Uçak 25,000 feet irtifada kaldı."
             },
             { 
                 word: ['Chopper', 'Helicopter'], 
                 sentence: "The chopper made a loud noise.", 
-                turkish: ['Helikopter', 'Satır']
+                turkish: ['Helikopter', 'Satır'],
+				turkish_sentence: "Helikopter yüksek ses çıkardı."
             },
             { 
                 word: ['Aviation'], 
                 sentence: "Model planes are a good way of interesting children in aviation. / George works in Federal Aviation Administration.", 
-                turkish: ['Havacılık']
+                turkish: ['Havacılık'],
+				turkish_sentence: "Model uçaklar çocukların havacılığa ilgi duymalarını sağlamanın iyi bir yoludur. / George, Federal Havacılık İdaresi'nde çalışıyor."
             },
             { 
                 word: ['Large-Small Intestine'], 
                 sentence: "The large intestine absorbs water. / The duodenum is a section of the small intestine.", 
-                turkish: ['Kalın-İnce Bağırsak']
+                turkish: ['Kalın-İnce Bağırsak'],
+				turkish_sentence: "Kalın bağırsak suyu emer. / Duodenum ince bağırsağın bir bölümüdür."
             },
             { 
                 word: ['Inflamed Bowel'], 
                 sentence: "She had an inflamed bowel when she was a child.", 
-                turkish: ['Bağırsak iltihabı', 'İltihaplı bağırsak']
+                turkish: ['Bağırsak iltihabı', 'İltihaplı bağırsak'],
+				turkish_sentence: "Çocukken bağırsak iltihabı geçirmiş."
             },
             { 
-                word: ["Wrap one's head around something"], 
-                sentence: "How do I even wrap my head around this stuff?", 
-                turkish: ['bir şeyi anlamaya, kavramaya çalışmak']
+                word: ["Indicator"], 
+                sentence: "National income is not a reliable indicator of economic welfare.", 
+                turkish: ['Gösterge', 'Sinyal lambası'],
+				turkish_sentence: "Milli gelir, ekonomik refahın güvenilir bir göstergesi değildir."
             }
         ];
 
         let currentWordIndex = 0;
-        let shuffledVocabulary = [];
-        let score = { correct: 0, wrong: 0 };
-        let isEnglishToTurkish = true;
-        let isDarkMode = true;
+		let shuffledVocabulary = [];
+		let score = { correct: 0, wrong: 0, blank: 0 };
+		let isEnglishToTurkish = true;
+		let isDarkMode = true;
+		let answeredQuestions = new Map(); // Change from Set to Map to store answer status
 
-        function shuffleVocabulary() {
-            shuffledVocabulary = [...vocabularyData].sort(() => Math.random() - 0.5);
-            currentWordIndex = 0;
-            score = { correct: 0, wrong: 0 };
-            renderQuestion();
-        }
-
+		function shuffleVocabulary() {
+			shuffledVocabulary = [...vocabularyData].sort(() => Math.random() - 0.5);
+			currentWordIndex = 0;
+			score = { correct: 0, wrong: 0, blank: 0 };
+			answeredQuestions.clear();
+			renderQuestion();
+		}
+		
         function renderQuestion() {
             const currentWord = shuffledVocabulary[currentWordIndex];
             const testContent = document.getElementById('testContent');
+            const isAnswered = answeredQuestions.has(currentWordIndex);
+    
+            const questionText = isEnglishToTurkish
+                ? `What does "${currentWord.word[0]}" mean in Turkish?`
+                : `İngilizcede "${currentWord.turkish[0]}" ne anlama gelir?`;
+
             testContent.innerHTML = `
-                <p class="question">
-                    ${isEnglishToTurkish 
-                        ? `What does "${currentWord.word[0]}" mean in Turkish?`
-                        : `What does "${currentWord.turkish[0]}" mean in English?`}
-                </p>
-                <input type="text" id="userAnswer" placeholder="Type your answer here" class="input">
+                <p class="question">${questionText}</p>
+                <div class="input-group">
+                    <input type="text" id="userAnswer" placeholder="${isEnglishToTurkish ? 'Type your answer here' : 'Cevabınızı buraya yazın'}" class="input" ${isAnswered ? 'disabled' : ''}>
+                    <button id="checkAnswer" class="check-button" ${isAnswered ? 'disabled' : ''}>${isEnglishToTurkish ? 'Check' : 'Denetle'}</button>
+                </div>
                 <div class="button-group">
-                    <button id="showClue" class="button">Show Clue</button>
-                    <button id="showAnswer" class="button">Show Answer</button>
+                    <button id="showClue" class="button">${isEnglishToTurkish ? 'Show Clue' : 'İpucu Göster'}</button>
                 </div>
                 <div id="clue" style="display: none;"></div>
                 <div id="answerFeedback"></div>
                 <div class="score">
-                    <p>Score: ${score.correct} correct, ${score.wrong} wrong</p>
+                    <p>${isEnglishToTurkish ? 'Score' : 'Puan'}: ${score.correct} ${isEnglishToTurkish ? 'correct' : 'doğru'}, ${score.wrong} ${isEnglishToTurkish ? 'wrong' : 'yanlış'}, ${score.blank} ${isEnglishToTurkish ? 'blank' : 'boş'}</p>
                 </div>
                 <div class="progress">
-                    <p>Question ${currentWordIndex + 1} of ${shuffledVocabulary.length}</p>
+                    <p>${isEnglishToTurkish ? 'Question' : 'Soru'} ${currentWordIndex + 1} ${isEnglishToTurkish ? 'of' : '/'} ${shuffledVocabulary.length}</p>
                 </div>
-                <button id="nextWord" class="button" style="display: none;">Next Word</button>
-                <button id="shuffle" class="button">Shuffle</button>
+                <div class="navigation-buttons">
+                    <button id="prevQuestion" class="nav-button">◀️</button>
+                    <button id="shuffle" class="button">${isEnglishToTurkish ? 'Shuffle' : 'Karıştır'}</button>
+                    <button id="nextQuestion" class="nav-button">▶️</button>
+                </div>
+                ${answeredQuestions.size === shuffledVocabulary.length 
+                    ? `<button id="finishTest" class="button">${isEnglishToTurkish ? 'Finish Test' : 'TESTİ BİTİR'}</button>` 
+                    : ''}
             `;
 
+            if (isAnswered) {
+                const answerStatus = answeredQuestions.get(currentWordIndex);
+                showAnswer(answerStatus.isCorrect, answerStatus.isBlank, answerStatus.userAnswer);
+            }
+
             document.getElementById('userAnswer').addEventListener('keypress', handleKeyPress);
+            document.getElementById('checkAnswer').addEventListener('click', checkAnswer);
             document.getElementById('showClue').addEventListener('click', showClue);
-            document.getElementById('showAnswer').addEventListener('click', showAnswer);
-            document.getElementById('nextWord').addEventListener('click', handleNextWord);
+            document.getElementById('prevQuestion').addEventListener('click', () => navigateQuestion(-1));
+            document.getElementById('nextQuestion').addEventListener('click', () => navigateQuestion(1));
             document.getElementById('shuffle').addEventListener('click', shuffleVocabulary);
 
-            if (!isEnglishToTurkish) {
-                document.getElementById('showClue').style.display = 'none';
+            if (answeredQuestions.size === shuffledVocabulary.length) {
+                document.getElementById('finishTest').addEventListener('click', showFinalScore);
             }
-        }
 
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') {
-                if (document.getElementById('nextWord').style.display === 'none') {
-                    checkAnswer();
-                } else {
-                    handleNextWord();
-                }
-            }
+            updateNavigationButtons();
         }
 
         function checkAnswer() {
+            if (answeredQuestions.has(currentWordIndex)) return;
+
             const userAnswer = document.getElementById('userAnswer').value.toLowerCase().trim();
             const currentWord = shuffledVocabulary[currentWordIndex];
             const correctAnswers = isEnglishToTurkish ? currentWord.turkish : currentWord.word;
 
-            const isCorrect = correctAnswers.some(answer => 
-                answer.toLowerCase().trim() === userAnswer
-            );
+            const isBlank = userAnswer === '';
+            const isCorrect = correctAnswers.some(answer => answer.toLowerCase().trim() === userAnswer);
 
-            score[isCorrect ? 'correct' : 'wrong']++;
+            if (isBlank) {
+                score.blank++;
+            } else {
+                score[isCorrect ? 'correct' : 'wrong']++;
+            }
+
+            answeredQuestions.set(currentWordIndex, { isCorrect, isBlank, userAnswer });
+            showAnswer(isCorrect, isBlank, userAnswer);
+            updateNavigationButtons();
+
+            if (answeredQuestions.size === shuffledVocabulary.length) {
+                renderQuestion(); // Re-render to show the "Finish the Test" button
+            }
+        }
+
+        function showAnswer(isCorrect, isBlank, userAnswer) {
+            const currentWord = shuffledVocabulary[currentWordIndex];
+            const correctAnswers = isEnglishToTurkish ? currentWord.turkish : currentWord.word;
 
             const answerFeedback = document.getElementById('answerFeedback');
             answerFeedback.innerHTML = `
-                <div class="alert ${isCorrect ? 'alert-success' : 'alert-error'}">
-                    ${isCorrect ? 'Correct!' : `Wrong. The correct answer(s) are: ${correctAnswers.join(', ')}`}
+                <div class="alert ${isCorrect ? 'alert-success' : (isBlank ? 'alert-blank' : 'alert-error')}">
+                    ${isCorrect 
+                        ? `${isEnglishToTurkish ? 'Correct!' : 'Doğru!'} ${isEnglishToTurkish ? 'The correct answer(s) are' : 'Doğru cevap(lar)'}: ${correctAnswers.join(', ')}` 
+                        : (isBlank 
+                            ? `${isEnglishToTurkish ? 'Blank.' : 'Boş.'} ${isEnglishToTurkish ? 'The correct answer(s) are' : 'Doğru cevap(lar)'}: ${correctAnswers.join(', ')}`
+                            : `${isEnglishToTurkish ? 'Wrong.' : 'Yanlış.'} ${isEnglishToTurkish ? 'The correct answer(s) are' : 'Doğru cevap(lar)'}: ${correctAnswers.join(', ')}`
+                        )}
                 </div>
             `;
 
+            document.getElementById('userAnswer').value = userAnswer;
             document.getElementById('userAnswer').disabled = true;
-            document.getElementById('showClue').disabled = true;
-            document.getElementById('showAnswer').disabled = true;
-            document.getElementById('nextWord').style.display = 'block';
+            document.getElementById('checkAnswer').disabled = true;
         }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                checkAnswer();
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                navigateQuestion(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateQuestion(1);
+            }
+        });
 
         function showClue() {
             const currentWord = shuffledVocabulary[currentWordIndex];
-            document.getElementById('clue').innerHTML = `<p><strong>Clue:</strong> ${currentWord.sentence}</p>`;
+            const clueText = isEnglishToTurkish ? currentWord.sentence : currentWord.turkish_sentence;
+            document.getElementById('clue').innerHTML = `<p><strong>${isEnglishToTurkish ? 'Clue' : 'İpucu'}:</strong> ${clueText}</p>`;
             document.getElementById('clue').style.display = 'block';
             document.getElementById('showClue').disabled = true;
         }
 
-        function showAnswer() {
-            checkAnswer();
+		function showFinalScore() {
+            const testContent = document.getElementById('testContent');
+            const totalQuestions = shuffledVocabulary.length;
+            score.blank = totalQuestions - (score.correct + score.wrong);
+
+            testContent.innerHTML = `
+                <div class="final-score">
+                    <h2>${isEnglishToTurkish ? 'Test Completed!' : 'Test Tamamlandı!'}</h2>
+                    <div class="score-details">
+                        <div class="score-item">
+                            <div class="score-value">${score.correct}</div>
+                            <div class="score-label">${isEnglishToTurkish ? 'Correct' : 'Doğru'}</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-value">${score.wrong}</div>
+                            <div class="score-label">${isEnglishToTurkish ? 'Wrong' : 'Yanlış'}</div>
+                        </div>
+                        <div class="score-item">
+                            <div class="score-value">${score.blank}</div>
+                            <div class="score-label">${isEnglishToTurkish ? 'Blank' : 'Boş'}</div>
+                        </div>
+                    </div>
+                    <button id="startNewTest" class="button">${isEnglishToTurkish ? 'START NEW TEST' : 'YENİ TEST BAŞLAT'}</button>
+                </div>
+            `;
+            document.getElementById('startNewTest').addEventListener('click', shuffleVocabulary);
         }
 
-        function handleNextWord() {
-            if (currentWordIndex < shuffledVocabulary.length - 1) {
-                currentWordIndex++;
+        function navigateQuestion(direction) {
+            const newIndex = currentWordIndex + direction;
+            if (newIndex >= 0 && newIndex < shuffledVocabulary.length) {
+                currentWordIndex = newIndex;
                 renderQuestion();
-            } else {
-                const testContent = document.getElementById('testContent');
-                testContent.innerHTML = `
-                    <h3 style="text-align: center;">Test Completed!</h3>
-                    <p style="text-align: center;">Final Score: ${score.correct} correct, ${score.wrong} wrong</p>
-                    <button id="restartTest" class="button" style="display: block; margin: 20px auto;">Start New Test</button>
-                `;
-                document.getElementById('restartTest').addEventListener('click', shuffleVocabulary);
             }
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prevQuestion').disabled = currentWordIndex === 0;
+            document.getElementById('nextQuestion').disabled = currentWordIndex === shuffledVocabulary.length - 1;
         }
 
         function toggleDarkMode() {
@@ -513,16 +704,12 @@
         }
 
         function toggleLanguageDirection() {
-            isEnglishToTurkish = !isEnglishToTurkish;
-            shuffleVocabulary();
-        }
-
-        document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
-        document.getElementById('languageToggle').addEventListener('change', function() {
-            document.getElementById('enTr').classList.toggle('active');
-            document.getElementById('trEn').classList.toggle('active');
-            toggleLanguageDirection();
-        });
+    		isEnglishToTurkish = !isEnglishToTurkish;
+    		document.getElementById('enTr').classList.toggle('active');
+    		document.getElementById('trEn').classList.toggle('active');
+    		document.getElementById('testTitle').textContent = isEnglishToTurkish ? 'Vocabulary Test' : 'Kelime Testi';
+    		shuffleVocabulary();
+		}
 
         function importXlsx() {
             const fileInput = document.getElementById('xlsxFile');
@@ -534,9 +721,8 @@
                 const workbook = XLSX.read(data, {type: 'array'});
                 const sheetName = workbook.SheetNames[0];
                 const worksheet = workbook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: ['word', 'sentence', 'turkish']});
+                const jsonData = XLSX.utils.sheet_to_json(worksheet, {header: ['word', 'sentence', 'turkish', 'turkish_sentence']});
 
-                // Remove header row if present
                 if (jsonData[0].word === 'word') {
                     jsonData.shift();
                 }
@@ -544,7 +730,8 @@
                 vocabularyData = jsonData.map(item => ({
                     word: item.word.split('\n'),
                     sentence: item.sentence,
-                    turkish: item.turkish.split('\n')
+                    turkish: item.turkish.split('\n'),
+                    turkish_sentence: item.turkish_sentence
                 }));
 
                 shuffleVocabulary();
@@ -554,14 +741,13 @@
             reader.readAsArrayBuffer(file);
         }
 
-        document.getElementById('importXlsx').addEventListener('click', function() {
-            document.getElementById('xlsxFile').click();
-        });
+        document.getElementById('darkModeToggle').addEventListener('click', toggleDarkMode);
+		document.getElementById('languageToggle').addEventListener('change', toggleLanguageDirection);
+		document.getElementById('importXlsx').addEventListener('click', () => document.getElementById('xlsxFile').click());
+		document.getElementById('xlsxFile').addEventListener('change', importXlsx);
+		document.addEventListener('keydown', handleKeyPress);
 
-        document.getElementById('xlsxFile').addEventListener('change', importXlsx);
-
-        // Initialize the test
-        shuffleVocabulary();
+		shuffleVocabulary();
     </script>
 </body>
 </html>
