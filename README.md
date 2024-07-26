@@ -8,7 +8,7 @@ While AI tools are going wild, I was just thinking that why don't I make an appl
 
 1.) It randomly extracts words or phrases from its demo vocabulary list within its base code and expects you to type in the answer. It will also show you the correct answer if you enter the wrong one or click the "check" button while leaving it blank.
 
-2.) The "Show Clue" button will show you one or more example sentences containing the word or phrase, and if you click Enter without answering, it will consider it will treat the space as blank and show the correct one.
+2.) The "Show Clue" button will show you one or more example sentences containing the word or phrase, and if you click Enter without answering, it will treat the space as blank and show the correct one.
 
 3.) The "Shuffle" button shuffles the words and resets the test.
 
